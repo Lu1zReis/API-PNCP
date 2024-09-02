@@ -1,5 +1,5 @@
 # API-PNCP
-Repositório para a fase de teste prático para o NUTI-IC 
+Repositório para a fase de teste prático para o NUTI-IC com código completo disponível na pasta 'site'.
 <hr>
   <b>Informações técnicas:</b>
   <ul>

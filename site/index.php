@@ -4,7 +4,7 @@
     // começa uma sessão cURL
     $curl = curl_init();
 
-    $url = "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20230122&dataFinal=20231002&cnpjOrgao=33004540000100&pagina=1";
+    $url = "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20230122&dataFinal=20230802&cnpjOrgao=33004540000100&pagina=1";
 
     // Configurações da sessão cURL
     curl_setopt_array($curl, [
@@ -61,7 +61,7 @@
 
     <form class="pesquisa" action="save.php" method="POST">
         <input type="hidden" name="data" value="<?php echo htmlspecialchars(json_encode($data)); ?>">
-        Salvar Informações:<input name="save" type="submit">
+        Salvar Informações: <input name="save" type="submit">
     </form>
 
     <div class="total">
@@ -71,12 +71,10 @@
     <div class="contratos">
         <?php foreach ($data['data'] as $value): ?>
             <div>
-                <h3>Contrato: <?php echo $value['nomeRazaoSocialFornecedor']; ?></h3>
-                <p>Objeto: <?php echo $value['objetoContrato']; ?></p>
-                <p>Data de Vigência: <?php echo $value['dataVigenciaInicio'] . " até " . $value['dataVigenciaFim']; ?></p>
-                <p>
-                    Valor Inicial: R$<?php echo $value['valorInicial'];?>
-                </p>
+                <h3><b>Contrato:</b> <?php echo $value['nomeRazaoSocialFornecedor']; ?></h3>
+                <p><b>Objeto:</b> <?php echo $value['objetoContrato']; ?></p>
+                <p><b>Data de Vigência:</b> <?php echo $value['dataVigenciaInicio'] . " até " . $value['dataVigenciaFim']; ?></p>
+                <p><b>Valor Inicial:</b> R$<?php echo $value['valorInicial'];?></p>
             </div>
         <?php endforeach; ?>
     </div>

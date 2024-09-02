@@ -2,6 +2,7 @@
 
 namespace connect;
 
+// conexao com o banco de dados
 class Conn {
     private static $instance;
     

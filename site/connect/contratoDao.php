@@ -4,10 +4,11 @@ namespace connect;
 
 class ContratoDao {
     public function create(Contrato $p) {
+        // insercao no bd 
         $sql = 'insert into contratos (orgao_id, nome_razao_social_fornecedor, objeto_contrato, data_vigencia_inicio, data_vigencia_fim, valor_inicial) values (?,?,?,?,?,?)';
         $stmt = Conn::getConn()->prepare($sql); 
   
-        // $p que está vindo como uma instância, para depois acessarmos os dados que quisermos da classe, basicamente só retornando o valor 
+        // acessando os dados da classe Produto, com os getters 
         $stmt->bindValue(1, $p->getOrgaoId()); 
         $stmt->bindValue(2, $p->getNome()); 
         $stmt->bindValue(3, $p->getObjeto()); 

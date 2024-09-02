@@ -6,7 +6,7 @@
 
     $url = "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20230122&dataFinal=20230802&cnpjOrgao=33004540000100&pagina=1";
 
-    // Configurações da sessão cURL
+    // configurações da sessão cURL
     curl_setopt_array($curl, [
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true, // Retorna a resposta como string
@@ -33,11 +33,13 @@
 
         $queryString = parse_url($url, PHP_URL_QUERY);
         parse_str($queryString, $params);
+
         // acessando as datas escolhidadas no filtro pela url
         $dataInicial = $params['dataInicial'];
         $data_obj = DateTime::createFromFormat('Ymd', $dataInicial);
         $dataFormatada = $data_obj->format('Y-m-d');
 
+        // fazendo a soma total dos contratos
         $total = 0;
         foreach ($data['data'] as $value): 
             $total += $value['valorInicial']; 

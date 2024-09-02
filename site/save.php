@@ -13,7 +13,7 @@ include_once 'connect/orgao.php';
 include_once 'connect/orgaoDao.php';
 include_once 'connect/contrato.php';
 include_once 'connect/contratoDao.php';
-
+ // verifica se o usuário enviou 
 if (isset($_POST['save'])) {
     $orgao       = new Orgao();
     $orgaoDao    = new OrgaoDao();
@@ -21,7 +21,7 @@ if (isset($_POST['save'])) {
     $contratoDao = new ContratoDao();
     
     $data = json_decode($_POST['data'], true);
-
+    // verifica se há algum valor da API
     if (isset($data['data'][0])) {
         $razaoSocial = $data['data'][0]['orgaoEntidade']['razaoSocial'];
         $cnpj        = $data['data'][0]['orgaoEntidade']['cnpj'];
@@ -34,15 +34,15 @@ if (isset($_POST['save'])) {
         $orgao->setPais($pais);
         $orgao->setPoder($poder);
         $orgao->setEsfera($esfera);
-        if($orgaoDao->create($orgao)): # VERIFICANDO SE CONSEGUIU INSERIR O NOVO ORGAO
+        if($orgaoDao->create($orgao)): # verifica se conseguiu inserir o novo orgao
 
-            # BUSCANDO O ULTIMO ID DO ULTIMO ORGAO INSERIDO
+            # busca o id do ultimo orgao inserido 
             $sql = "SELECT id FROM orgao ORDER BY id DESC LIMIT 1";
             $stmt = Conn::getConn()->prepare($sql);
             $stmt->execute();
             $id_orgao = $stmt->fetchColumn();
 
-            # INSERINDO OS CONTRATOS
+            # inserindo os contratos
             foreach ($data['data'] as $value) {
                 $contrato->setNome($value['nomeRazaoSocialFornecedor']);
                 $contrato->setObjeto($value['objetoContrato']); 
